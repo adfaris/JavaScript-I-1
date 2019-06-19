@@ -2,7 +2,7 @@
 
 // The car dealer has all of their inventory housed in the array seen below.  Scroll down past the data to find out how you can help the car dealer.
 
-let inventory = [{'id': 1, 'car_make': 'Lincoln', 'car_model': 'Navigator', 'car_year': 2009},
+const inventory = [{'id': 1, 'car_make': 'Lincoln', 'car_model': 'Navigator', 'car_year': 2009},
   {'id': 2, 'car_make': 'Mazda', 'car_model': 'Miata MX-5', 'car_year': 2001},
   {'id': 3, 'car_make': 'Land Rover', 'car_model': 'Defender Ice Edition', 'car_year': 2010},
   {'id': 4, 'car_make': 'Honda', 'car_model': 'Accord', 'car_year': 1983},
@@ -62,18 +62,30 @@ let inventory = [{'id': 1, 'car_make': 'Lincoln', 'car_model': 'Navigator', 'car
 
 // ==== Challenge 1 ====
 // The dealer can't recall the information for a car with an id of 33 on his lot. Help the dealer find out which car has an id of 33 by logging the car's year, make, and model in the console log provided to you below:
-let result = []
+let result
 for (let i = 0; i < inventory.length; i++) {
   if (inventory[i].id === 33) {
     result = inventory[i]
   }
 }
-// console.log(`Car 33 is a ${result.car_year} ${result.car_make} ${result.car_model}`)
+console.log(`Car 33 is a ${result.car_year} ${result.car_make} ${result.car_model}`)
+
+// next level, not use for loop, 
+// forEach, reduce, filter or map => stretch exe refacator
+// const and let
+// closure 
+// 
+
+inventory.forEach(car => {
+  if (car.id === 33) {
+    console.log(`Car 33 is a ${result.car_year} ${result.car_make} ${result.car_model}`)
+  }
+})
 
 // ==== Challenge 2 ====
 // The dealer needs the information on the last car in their inventory.  What is the make and model of the last car in the inventory?  Log the make and model into the console.
-let lastCarMake = inventory[inventory.length - 1].car_make
-let lastCarModel = inventory[inventory.length - 1].car_model
+const lastCarMake = inventory[inventory.length - 1].car_make
+const lastCarModel = inventory[inventory.length - 1].car_model
 console.log(`${lastCarMake} ${lastCarModel}`)
 
 // ==== Challenge 3 ====
@@ -111,6 +123,10 @@ for (let i = 0; i < inventory.length; i++) {
   carYears.push(inventory[i].car_year)
 }
 // console.log(carYears)
+carYears = inventory.map(car => {
+  return car.car_year
+})
+console.log(carYears)
 
 // ==== Challenge 5 ====
 // The car lot manager needs to find out how many cars are older than the year 2000. Using the carYears array you just created, find out how many cars were made before the year 2000 \
@@ -123,6 +139,9 @@ for (let i = 0; i < carYears.length; i++) {
 }
 // console.log(oldCars.length)
 
+oldCars = carYears.filter(carYear => carYear < 2000)
+console.log(oldCars.length)
+
 // ==== Challenge 6 ====
 // A buyer is interested in seeing only BMW and Audi cars within the inventory.  Return an array that only contains BMW and Audi cars.
 // Once you have populated the BMWAndAudi array, use JSON.stringify() to show the results of the array in the console.
@@ -133,3 +152,7 @@ for (let i = 0; i < inventory.length; i++) {
   }
 }
 // console.log(JSON.stringify(BMWAndAudi))
+
+BMWAndAudi = inventory.filter(car => car.car_make === 'BMW' || car.car_make === 'Audi')
+
+console.log(JSON.stringify(BMWAndAudi))
